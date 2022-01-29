@@ -116,6 +116,18 @@ func (s *Storage) AddHuaweiError(count int64) {
 	s.setBuntDB(storage.HuaweiErrorKey, total)
 }
 
+// AddMISuccess record counts of success MI push notification.
+func (s *Storage) AddMISuccess(count int64) {
+	total := s.GetMISuccess() + count
+	s.setBuntDB(storage.MISuccessKey, total)
+}
+
+// AddMIError record counts of error MI push notification.
+func (s *Storage) AddMIError(count int64) {
+	total := s.GetMIError() + count
+	s.setBuntDB(storage.MIErrorKey, total)
+}
+
 // GetTotalCount show counts of all notification.
 func (s *Storage) GetTotalCount() int64 {
 	var count int64
@@ -168,6 +180,22 @@ func (s *Storage) GetHuaweiSuccess() int64 {
 func (s *Storage) GetHuaweiError() int64 {
 	var count int64
 	s.getBuntDB(storage.HuaweiErrorKey, &count)
+
+	return count
+}
+
+// GetMISuccess show success counts of MI notification.
+func (s *Storage) GetMISuccess() int64 {
+	var count int64
+	s.getBuntDB(storage.MISuccessKey, &count)
+
+	return count
+}
+
+// GetMIError show error counts of MI notification.
+func (s *Storage) GetMIError() int64 {
+	var count int64
+	s.getBuntDB(storage.MIErrorKey, &count)
 
 	return count
 }

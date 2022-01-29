@@ -53,10 +53,17 @@ func main() {
 	flag.StringVar(&opts.Ios.Password, "password", "", "iOS certificate password for gorush")
 	flag.StringVar(&opts.Android.APIKey, "k", "", "Android api key configuration for gorush")
 	flag.StringVar(&opts.Android.APIKey, "apikey", "", "Android api key configuration for gorush")
+
 	flag.StringVar(&opts.Huawei.AppSecret, "hk", "", "Huawei api key configuration for gorush")
 	flag.StringVar(&opts.Huawei.AppSecret, "hmskey", "", "Huawei api key configuration for gorush")
 	flag.StringVar(&opts.Huawei.AppID, "hid", "", "HMS app id configuration for gorush")
 	flag.StringVar(&opts.Huawei.AppID, "hmsid", "", "HMS app id configuration for gorush")
+
+	flag.StringVar(&opts.MI.AppSecret, "mk", "", "MIPUSH api key configuration for gorush")
+	flag.StringVar(&opts.MI.AppSecret, "mikey", "", "MIPUSH api key configuration for gorush")
+	flag.StringVar(&opts.MI.Package, "mp", "", "MIPUSH package id configuration for gorush")
+	flag.StringVar(&opts.MI.Package, "mipkg", "", "MIPUSH package id configuration for gorush")
+
 	flag.StringVar(&opts.Core.Address, "A", "", "address to bind")
 	flag.StringVar(&opts.Core.Address, "address", "", "address to bind")
 	flag.StringVar(&opts.Core.Port, "p", "", "port number for gorush")
@@ -72,6 +79,7 @@ func main() {
 	flag.BoolVar(&opts.Android.Enabled, "android", false, "send android notification")
 	flag.BoolVar(&opts.Huawei.Enabled, "huawei", false, "send huawei notification")
 	flag.BoolVar(&opts.Ios.Enabled, "ios", false, "send ios notification")
+	flag.BoolVar(&opts.MI.Enabled, "mi", false, "send mi notification")
 	flag.BoolVar(&opts.Ios.Production, "production", false, "production mode in iOS")
 	flag.StringVar(&topic, "topic", "", "apns topic in iOS")
 	flag.StringVar(&opts.Core.HTTPProxy, "proxy", "", "http proxy url")
@@ -427,6 +435,10 @@ Huawei Options:
     -hk, --hmskey <hms_key>          HMS App Secret
     -hid, --hmsid <hms_id>			 HMS App ID
     --huawei                         enabled huawei (default: false)
+MIPUSH Options:
+    -mk, --mikey <mipush_key>          MIPUSH App Secret
+    -mp, --mipkg <mipush_package>			 MIPUSH Package
+    --mi                         enabled mipush (default: false)
 Common Options:
     --topic <topic>                  iOS, Android or Huawei topic message
     -h, --help                       Show this message

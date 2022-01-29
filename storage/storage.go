@@ -21,6 +21,12 @@ const (
 
 	// HuaweiErrorKey is key name for huawei error count of storage
 	HuaweiErrorKey = "gorush-huawei-error-count"
+
+	// MISuccessKey is key name for mi success count of storage
+	MISuccessKey = "gorush-mi-success-count"
+
+	// MIErrorKey is key name for mi error count of storage
+	MIErrorKey = "gorush-mi-error-count"
 )
 
 // Storage interface
@@ -34,6 +40,8 @@ type Storage interface {
 	AddAndroidError(int64)
 	AddHuaweiSuccess(int64)
 	AddHuaweiError(int64)
+	AddMISuccess(int64)
+	AddMIError(int64)
 	GetTotalCount() int64
 	GetIosSuccess() int64
 	GetIosError() int64

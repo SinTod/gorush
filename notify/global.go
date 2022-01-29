@@ -13,6 +13,8 @@ var (
 	FCMClient *fcm.Client
 	// HMSClient is Huawei push client
 	HMSClient *core.HMSClient
+	// MIPUSHClient is mi push client
+	MIPUSHClient *XMPush
 	// MaxConcurrentIOSPushes pool to limit the number of concurrent iOS pushes
 	MaxConcurrentIOSPushes chan struct{}
 )

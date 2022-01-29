@@ -248,6 +248,8 @@ func SendNotification(req queue.QueuedMessage, cfg *config.ConfYaml) (resp *Resp
 		resp, err = PushToAndroid(v, cfg)
 	case core.PlatFormHuawei:
 		resp, err = PushToHuawei(v, cfg)
+	case core.PlaFormMI:
+		resp, err = PushToMI(v, cfg)
 	}
 
 	if cfg.Core.FeedbackURL != "" {

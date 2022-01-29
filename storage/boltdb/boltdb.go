@@ -105,6 +105,18 @@ func (s *Storage) AddHuaweiError(count int64) {
 	s.setBoltDB(storage.HuaweiErrorKey, total)
 }
 
+// AddMISuccess record counts of success MI push notification.
+func (s *Storage) AddMISuccess(count int64) {
+	total := s.GetHuaweiSuccess() + count
+	s.setBoltDB(storage.MISuccessKey, total)
+}
+
+// AddMIError record counts of error MI push notification.
+func (s *Storage) AddMIError(count int64) {
+	total := s.GetHuaweiError() + count
+	s.setBoltDB(storage.MIErrorKey, total)
+}
+
 // GetTotalCount show counts of all notification.
 func (s *Storage) GetTotalCount() int64 {
 	var count int64

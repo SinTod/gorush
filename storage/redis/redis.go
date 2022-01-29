@@ -116,6 +116,16 @@ func (s *Storage) AddHuaweiError(count int64) {
 	s.client.IncrBy(s.ctx, storage.HuaweiErrorKey, count)
 }
 
+// AddMISuccess record counts of success MI push notification.
+func (s *Storage) AddMISuccess(count int64) {
+	s.client.IncrBy(s.ctx, storage.MISuccessKey, count)
+}
+
+// AddMIError record counts of error MI push notification.
+func (s *Storage) AddMIError(count int64) {
+	s.client.IncrBy(s.ctx, storage.MIErrorKey, count)
+}
+
 // GetTotalCount show counts of all notification.
 func (s *Storage) GetTotalCount() int64 {
 	var count int64
