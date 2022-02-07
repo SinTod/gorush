@@ -86,6 +86,15 @@ func GetMINotification(req *PushNotification, pkg string) (*xmpush.Message, erro
 			"notify_foreground": "1",
 		},
 	}
+	if len(req.Tokens) > 0 {
+		for i, token := range req.Tokens {
+			if i == 0 {
+				message.RegistrationId = token
+			} else {
+				message.RegistrationId = message.RegistrationId + "," + token
+			}
+		}
+	}
 	return message, nil
 }
 
@@ -184,11 +193,13 @@ func NewXmPush(config *XmpushConfig) (*XMPush, error) {
 }
 
 func (m *XMPush) SendMessage(ctx context.Context, notification *xmpush.Message) (*xmpush.Result, error) {
-	result, err := xmpush.SendMessageAll(m.Config.AppSecret, notification)
-	if err != nil {
-		return nil, err
+	// 通过 regID 推送
+	if notification.RegistrationId != "" {
+		return xmpush.SendMessageByRegIds(m.Config.AppSecret, notification)
 	}
-	return result, nil
+	// 群推
+	return xmpush.SendMessageAll(m.Config.AppSecret, notification)
+
 }
 
 //SendByCid 根据用户cid推送
